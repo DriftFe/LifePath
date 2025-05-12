@@ -1,6 +1,6 @@
 export let state = {
     age: 0,
-    money: 1000,
+    money: 0,
     bank: 0,
     happiness: 70,
     health: 80,
