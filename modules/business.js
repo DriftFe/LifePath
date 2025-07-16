@@ -13,20 +13,22 @@ export function businessSimulatorMenu() {
   menuDiv.innerHTML = '';
   if (!state.business) {
     eventTextDiv.innerHTML = "You don't own a business. Would you like to start one?";
-    addChoiceBtn("Start Business", startBusiness);
+    addChoiceBtn("Start a Business", startBusiness);
     addChoiceBtn("Back", render);
   } else {
     const b = state.business;
     eventTextDiv.innerHTML = `
       <b>${b.name}</b> (${b.industry})<br>
-      Employees: ${b.employees} | Price: $${b.price} | Revenue: $${b.revenue} | Expenses: $${b.expenses}<br>
-      Value: $${b.value} | Years: ${b.years}
+      <b>Employees:</b> ${b.employees} | <b>Price per item/service:</b> ${b.price}<br>
+      <b>Revenue:</b> ${b.revenue} | <b>Expenses:</b> ${b.expenses}<br>
+      <b>Value:</b> ${b.value} | <b>Years in business:</b> ${b.years}<br>
+      <b>Cash Invested:</b> ${b.cashInvested}
     `;
     addChoiceBtn("Operate for 1 Year", operateBusiness);
-    addChoiceBtn("Invest $1000", investBusiness);
-    addChoiceBtn("Hire Employee ($500)", hireEmployee);
-    addChoiceBtn("Set Price", setBusinessPrice);
-    addChoiceBtn("Sell Business", sellBusiness);
+    addChoiceBtn("Invest $1000 (Increase Value)", investBusiness);
+    addChoiceBtn("Hire Employee ($500, Boosts Revenue)", hireEmployee);
+    addChoiceBtn("Set Price per Item/Service", setBusinessPrice);
+    addChoiceBtn("Sell Business (Cash Out)", sellBusiness);
     addChoiceBtn("Back", render);
   }
 }

@@ -79,7 +79,8 @@ export function renderMenu() {
     addMenuBtn("View/Repay Loans", showRepayLoanMenu);
     addMenuBtn("Buy Asset", showBuyAssetMenu);
     addMenuBtn("Receive Gift", receiveGift);
-    addMenuBtn("Business Simulator", businessSimulatorMenu);
+    addMenuBtn("Start a Business", businessSimulatorMenu);
+    addMenuBtn("Store", showStoreMenu);
     addMenuBtn("Crime Simulator", crimeSimulatorMenu);
     addMenuBtn("Shop", () => alert("Shop system coming soon!"));
   }
@@ -93,6 +94,46 @@ export function addMenuBtn(label, action) {
   btn.style.opacity = 0;
   document.getElementById('menu').appendChild(btn);
   setTimeout(() => { btn.style.opacity = 1; }, 50);
+}
+
+// --- Store System ---
+const storeItems = [
+  { name: "Gold Watch", price: 500 },
+  { name: "Laptop", price: 1000 },
+  { name: "Diamond Ring", price: 2500 },
+  { name: "Painting", price: 1500 },
+  { name: "Car", price: 5000 }
+];
+
+function showStoreMenu() {
+  const eventTextDiv = document.getElementById('event-text');
+  const choicesDiv = document.getElementById('choices');
+  eventTextDiv.innerHTML = 'Store: Purchase items to use as collateral.';
+  choicesDiv.innerHTML = '';
+  storeItems.forEach(item => {
+    const btn = document.createElement('button');
+    btn.className = 'menu-btn';
+    btn.textContent = `${item.name} (${item.price})`;
+    btn.onclick = () => {
+      if (state.money >= item.price) {
+        state.money -= item.price;
+        if (!state.items) state.items = [];
+        state.items.push(item.name);
+        state.log.push(`Purchased ${item.name} for ${item.price}.`);
+        saveGame();
+        renderLog();
+        showStoreMenu();
+      } else {
+        eventTextDiv.innerHTML = 'Not enough money to purchase this item.';
+      }
+    };
+    choicesDiv.appendChild(btn);
+  });
+  const backBtn = document.createElement('button');
+  backBtn.className = 'menu-btn';
+  backBtn.textContent = 'Back';
+  backBtn.onclick = renderMenu;
+  choicesDiv.appendChild(backBtn);
 }
 
 // --- Kid Activities ---
