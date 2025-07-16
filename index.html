@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LifePath</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game-container">
+    <div id="stats"></div>
+    <div id="logs"></div>
+    <div id="life-log"></div>
+    <div id="event-text"></div>
+    <div id="menu"></div>
+    <div id="bank-panel">
+      <div><b>Bank Account:</b> $<span id="bank-balance">0</span></div>
+      <div class="bank-actions">
+        <input type="number" id="bank-amount" min="1" placeholder="Amount">
+        <button id="deposit-btn" class="glass-btn">Deposit</button>
+        <button id="withdraw-btn" class="glass-btn">Withdraw</button>
+      </div>
+      <button id="close-bank-btn" class="glass-btn">Close Bank</button>
+      <div id="bank-message"></div>
+    </div>
+    <button id="age-btn">Age +1 Year</button>
+    <button id="reset-btn">Restart Life</button>
+    <div id="choices"></div>
+  </div>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
